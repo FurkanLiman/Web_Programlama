@@ -1,8 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿<h3>DATALAR</h3>
+<ul>
+    <li>@TempData["UserData"]</li>
+    @foreach(var coffee in TempData["coffeeList"] as List<Coffee>)
+    {
+        <li>@coffee.Name</li>
+        <li>@coffee.Brand</li>
+        <li>@coffee.Taste</li>
+        <img src="@Url.Content(coffee.Image)" alt="IMAGES" />
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</ul>
