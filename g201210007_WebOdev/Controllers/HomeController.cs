@@ -27,7 +27,7 @@ namespace g201210007_WebOdev.Controllers
             var UserName = UserCache[1].Value.ToString();
             Account UserC = new Account(UserEmail, "***");
             UserC.Name = UserName;
-            if (UserC == null)// kişi giriş yapmadıysa logine yolladık
+            if (UserCache == null)// kişi giriş yapmadıysa logine yolladık
             {   
                 return RedirectToAction("Login", "Account");
             }
