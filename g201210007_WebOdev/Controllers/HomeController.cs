@@ -18,6 +18,8 @@ namespace g201210007_WebOdev.Controllers
         
         public IActionResult Index()
         { //TempData ile Controllerlar arası user aktarımı yapıldı.
+            Account User = JsonConvert.DeserializeObject<Account>((string)TempData["UserData"]);
+            TempData["User"] = User;
             CoffeeSql getCoffee = new CoffeeSql();
             List<Coffee> coffees = getCoffee.CoffeeRead();
             TempData["coffeeList"] = coffees;

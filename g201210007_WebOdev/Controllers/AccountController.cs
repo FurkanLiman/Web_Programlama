@@ -29,6 +29,27 @@ namespace g201210007_WebOdev.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public IActionResult SignIn(String Email, String Password)
+        {
+            Account User = new Account(Email,Password);
+
+            if (User.UserWriteSql(User))
+            {//kişi kayıdı başarılıysa logine giriş yapmaya yollandı
+                return RedirectToAction("Login");
+            }
+            else
+            {//kişi kaydında sıkıntı varsa tekrar kayıt sekmesine yollandı
+                return View();
+            }
+        }
+
+        public IActionResult SignIn()
+        {
+            //sign In işlemi yaptır
+            return View();
+        }
+
         public IActionResult Login()
         {
 

@@ -21,5 +21,10 @@ namespace g201210007_WebOdev.Models
             UserSql sqlQuestioning = new UserSql();
             return sqlQuestioning.UserCheck(User);
         }
+        public bool UserWriteSql(Account User) {
+            UserSql sqlkWrite= new UserSql();
+            return sqlkWrite.UserWrite(User);
+
+        }
     }
 }
