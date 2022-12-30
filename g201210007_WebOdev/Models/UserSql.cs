@@ -51,7 +51,7 @@ namespace g201210007_WebOdev.Models
                 { // sistemde kayıtlı kişi yoksa
                     using (var connectionWrite = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
                     using (var commandWrite = new NpgsqlDataAdapter())
-                    using (var insertCommandWrite = new NpgsqlCommand("INSERT INTO \"Users\" (\"User_Name\", \"User_Password\",\"User_Name\" )\rVALUES ('" + User.Email + "','" + User.Password + "','"+User.Name+"');"))
+                    using (var insertCommandWrite = new NpgsqlCommand("INSERT INTO \"Users\" (\"User_Email\", \"User_Password\",\"User_Name\" )\rVALUES ('" + User.Email + "','" + User.Password + "','"+User.Name+"');"))
                     {
                         insertCommandWrite.Connection = connectionWrite;
                         commandWrite.InsertCommand = insertCommandWrite;
