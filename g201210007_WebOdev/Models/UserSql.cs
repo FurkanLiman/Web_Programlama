@@ -6,9 +6,10 @@ namespace g201210007_WebOdev.Models
     {
         public bool UserCheck(Account User)
         {
+            //"SELECT CASE WHEN EXISTS (SELECT * FROM \"Users\" WHERE \"User_Name\" = '" + User.Email + "' and \"User_Password\" = '" + User.Password + "') THEN CAST(true AS BOOL) ELSE CAST(false AS BOOL) END"))"
             using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
             using (var command = new NpgsqlDataAdapter())
-            using (var insertCommand = new NpgsqlCommand("SELECT CASE WHEN EXISTS (SELECT * FROM \"Users\" WHERE \"User_Name\" = '" + User.Email + "' and \"User_Password\" = '" + User.Password + "') THEN CAST(true AS BOOL) ELSE CAST(false AS BOOL) END"))
+            using (var insertCommand = new NpgsqlCommand("(SELECT \"User_Name\" FROM \"Users\" WHERE \"User_Email\" = '" + User.Email + "' and \"User_Password\" = '"+User.Password+"')"))
             {
                 insertCommand.Connection = connection;
                 command.InsertCommand = insertCommand;
@@ -16,8 +17,9 @@ namespace g201210007_WebOdev.Models
 
                 connection.Open();
                 NpgsqlDataReader state = insertCommand.ExecuteReader();
-                if (state.Read() && state.GetBoolean(0))
+                if (state.Read() && state.GetString(0)!= null)
                 {
+                    User.Name= state.GetString(0);
                     return true;
                 }
                 else
@@ -49,7 +51,7 @@ namespace g201210007_WebOdev.Models
                 { // sistemde kayıtlı kişi yoksa
                     using (var connectionWrite = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
                     using (var commandWrite = new NpgsqlDataAdapter())
-                    using (var insertCommandWrite = new NpgsqlCommand("INSERT INTO \"Users\" (\"User_Name\", \"User_Password\")\rVALUES ('" + User.Email + "','" + User.Password + "');"))
+                    using (var insertCommandWrite = new NpgsqlCommand("INSERT INTO \"Users\" (\"User_Name\", \"User_Password\",\"User_Name\" )\rVALUES ('" + User.Email + "','" + User.Password + "','"+User.Name+"');"))
                     {
                         insertCommandWrite.Connection = connectionWrite;
                         commandWrite.InsertCommand = insertCommandWrite;

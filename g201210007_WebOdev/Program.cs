@@ -1,10 +1,33 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
+
+var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Authantication Ekleme iþlemi yapýldý
+builder.Services.AddSession();//session ekledik
+
+
+
+builder.Services.AddMvc(config =>
+{ 
+    var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+    config.Filters.Add(new AuthorizeFilter(policy));
+});
+builder.Services.AddMvc();
+builder.Services.AddAuthentication(
+    CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x=>
+    {
+        x.LoginPath = "/Account/Login";
+    });
+//*Authentication
+
 
 var app = builder.Build();
-
+app.UseCookiePolicy();//
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -16,12 +39,14 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseAuthentication();//authentication eklendi
+app.UseSession();//sessioný kullandýk
 app.UseRouting();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

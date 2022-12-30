@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
-
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
 
 namespace g201210007_WebOdev.Controllers
 {
@@ -14,14 +16,27 @@ namespace g201210007_WebOdev.Controllers
     {
 
         [HttpPost]
-        public IActionResult Login(String Email, String Password)
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(String Email, String Password)
         {//Başlangıç adresimiz Account/Login
            //Login .cshtml'dan Email ve Password verisini alıp Model üzerinden Sql kontrolü sağlayacak.
             Account User = new Account(Email, Password);
             
             if (User.UserControl(User))
             {//Başarılı giriş sonucu ana menüye göndermekte
+
                 TempData["UserData"] = JsonConvert.SerializeObject(User);
+
+                HttpContext.Session.SetString("UserEmail",User.Email);
+
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Email,User.Email),
+                    new Claim(ClaimTypes.Name,User.Name)
+                };
+                var useridentity = new ClaimsIdentity(claims,"a");
+                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Home"); 
             }
             else
@@ -30,6 +45,7 @@ namespace g201210007_WebOdev.Controllers
             }
         }
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult SignIn(String Email, String Password)
         {
             Account User = new Account(Email,Password);
@@ -43,13 +59,13 @@ namespace g201210007_WebOdev.Controllers
                 return View();
             }
         }
-
+        [AllowAnonymous]
         public IActionResult SignIn()
         {
             //sign In işlemi yaptır
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Login()
         {
 

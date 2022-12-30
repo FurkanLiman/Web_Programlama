@@ -1,12 +1,14 @@
-﻿<h3>DATALAR</h3>
-<ul>
-    <li>@TempData["UserData"]</li>
+﻿
+<h3>DATALAR</h3>
+<h3>@TempData["UserData"]</h3>
+<h3>Datalar</h3>
+<h3>@TempData["Us"]</h3>
     @foreach(var coffee in TempData["coffeeList"] as List<Coffee>)
     {
+        
         <li>@coffee.Name</li>
         <li>@coffee.Brand</li>
         <li>@coffee.Taste</li>
         <img src="@Url.Content(coffee.Image)" alt="IMAGES" />
+        
     }
-
-</ul>

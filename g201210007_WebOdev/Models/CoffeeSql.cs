@@ -28,6 +28,7 @@ namespace g201210007_WebOdev.Models
                         coffee.Name = coffees.GetString(1);
                         coffee.Brand = coffees.GetString(2);
                         coffee.Taste =  coffees.GetString(3);
+                        
                         coffee.Image = coffees.GetString(4);
                         coffeeList.Add(coffee);
 
