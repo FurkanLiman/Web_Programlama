@@ -1,6 +1,68 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
+﻿
 
-@model g201210007_WebOdev.Models.Account
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color:#DBCFBB">
+    <section class="vh-100" style="background-color:#DBCFBB;min-width:fit-content">
+  <div class="container py-5 h-200">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col col-xl-10">
+        <div class="card" style="border-radius: 1rem;">
+          <div class="row g-0">
+            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://images.unsplash.com/photo-1620820186187-fc32e79adb74?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=686&q=80"
+                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+            </div>
+            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+              <div class="card-body p-4 p-lg-5 text-black">
+
+                                    <form asp-action="Login" asp-controller="Account" method="post">
+                   
+                  <div class="d-flex align-items-center mb-3 pb-1">
+                           <img src="https://www.freepnglogos.com/uploads/coffee-logo-png/coffee-logo-design-creative-idea-logo-elements-2.png"
+                                                 alt="login form" class="img-fluid" style="max-width:20%" />                        
+                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                    <span class="h1 fw-bold mb-0">Hoş Geldiniz!</span>
+                  </div>
+
+                  <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Kahve dünyasını keşfetmek için giriş yapınız</h5>
+
+                  <div class="form-outline mb-4">
+                                            <input type="text" name="Email" class="form-control form-control-lg" />
+                                            <label class="form-label" >Email</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                                            <input type="password" name="Password" class="form-control form-control-lg" />
+                                            <label class="form-label" >Şifre</label>
+                  </div>
+
+                  <div class="pt-1 mb-4">
+                    <button class="btn btn-dark btn-lg btn-block" type="submit" >Giriş Yap</button>
+                  </div>
+                                    </form>
+                  <p class="mb-5 pb-lg-2" style="color: #393f81;"> Hesabınız yok mu? <a href="#!"
+                      style="color: #393f81;">Kayıt Ol</a></p>
+                
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+    </body>
+</html>
+@*
+
 
 <form asp-action="Login" asp-controller="Account" method="post">
     <input  type="text" name="Email" />
@@ -11,3 +73,4 @@
     <button>Sign In</button>
 
 </form>
+*@
