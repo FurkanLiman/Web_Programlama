@@ -1,7 +1,8 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
 
 @*@model g201210007_WebOdev.Models.Account *@
-@model IEnumerable<g201210007_WebOdev.Models.Coffee>
+@*@model IEnumerable<g201210007_WebOdev.Models.Coffee>*@
+@model List<g201210007_WebOdev.Models.Coffee>
 <!doctype html>
 <html lang="en" >
 <head>
@@ -43,7 +44,7 @@
                             <li class="active"><a asp-action="Index" asp-controller="Home"><span>Anasayfa</span></a></li>
                             <li><a asp-action="Index" asp-controller="Home"><span>Kahvelerimiz</span></a></li>
                             <li><a asp-action="Index" asp-controller="Home"><span>Hakkımızda</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Bize Ulaşın</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Profile"><span>Profil</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -69,7 +70,7 @@
                 </div>
                 <div class="row" >
                 @{
-                        foreach (var coffee in TempData["coffeeList"] as List<Coffee>)
+                        foreach (var coffee in Model)
                     {
 
                                 @*<var Name="sss" data="@coffee.Name"></var>*@

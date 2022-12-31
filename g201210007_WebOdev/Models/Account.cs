@@ -10,6 +10,7 @@ namespace g201210007_WebOdev.Models
         public string Name { get; set; }
         public string Email { get; set; } 
         public string Password { get; set; }    
+        public string Authority{ get; set; }
         
         public Account(string email, string password)
         {

@@ -48,7 +48,45 @@ namespace g201210007_WebOdev.Models
             }
 
         }
+        public void AddCoffee(string name, string brand, string taste, string image)
+        {
+            using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
+            using (var command = new NpgsqlDataAdapter())
+            using (var insertCommand = new NpgsqlCommand("insert into \"Coffee\"(\"Coffee_Name\",\"Coffe_Brand\",\"Coffee_Taste\",\"Coffee_Image\") values ('"+name+"', '"+brand+"','"+taste+"','"+image+"')"))
+            {
+                insertCommand.Connection = connection;
+                command.InsertCommand = insertCommand;
 
+                connection.Open();
+                NpgsqlDataReader coffeeAdd = insertCommand.ExecuteReader();
+
+            }
+
+
+        }
+        public void DeleteCoffee(string id)
+        {
+            using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
+            using (var command = new NpgsqlDataAdapter())
+            using (var insertCommand = new NpgsqlCommand("DELETE FROM \"Coffee\" WHERE id ="+id))
+            {
+                insertCommand.Connection = connection;
+                command.InsertCommand = insertCommand;
+
+                connection.Open();
+                NpgsqlDataReader deleteCoffee= insertCommand.ExecuteReader();
+                if (deleteCoffee.Read())
+                {
+                    Console.WriteLine("silindi");
+                }
+                else
+                {
+
+                }
+                
+
+            }
+        }
         public Coffee CoffeeReadInfo(int id)
         {
             using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))

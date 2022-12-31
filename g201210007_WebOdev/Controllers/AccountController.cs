@@ -21,9 +21,10 @@ namespace g201210007_WebOdev.Controllers
         {//Başlangıç adresimiz Account/Login
            //Login .cshtml'dan Email ve Password verisini alıp Model üzerinden Sql kontrolü sağlayacak.
             Account User = new Account(Email, Password);
-            
+            UserSql check = new UserSql();
             if (User.UserControl(User))
             {//Başarılı giriş sonucu ana menüye göndermekte
+                User = check.UserInfo(Email);
 
                 TempData["UserData"] = JsonConvert.SerializeObject(User);
 
@@ -32,7 +33,8 @@ namespace g201210007_WebOdev.Controllers
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Email,User.Email),
-                    new Claim(ClaimTypes.Name,User.Name)
+                    new Claim(ClaimTypes.Name,User.Name),
+                    new Claim(ClaimTypes.Role,User.Authority)
                 };
                 var useridentity = new ClaimsIdentity(claims,"a");
                 ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);

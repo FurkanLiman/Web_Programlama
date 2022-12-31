@@ -37,8 +37,9 @@ namespace g201210007_WebOdev.Controllers
                 TempData["UserData"] = JsonConvert.SerializeObject(UserC);
                 CoffeeSql getCoffee = new CoffeeSql();
                 List<Coffee> coffees = getCoffee.CoffeeRead();
-                TempData["coffeeList"] = coffees;
-                return View();
+                //TempData["coffeeList"] = coffees;
+                
+                return View(coffees);
             }
         }
 

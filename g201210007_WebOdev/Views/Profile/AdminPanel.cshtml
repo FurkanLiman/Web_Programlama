@@ -1,0 +1,181 @@
+﻿@*@model IEnumerable<g201210007_WebOdev.Models.Coffee>*@
+@model List<g201210007_WebOdev.Models.Coffee>
+
+
+<!doctype html>
+<html lang="en" >
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>Website Menu #3</title>
+</head>
+
+<body class="hero img-fluid" style="background-image: url('https://images.unsplash.com/photo-1542181961-9590d0c79dab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');">
+    
+    
+
+   <header class="site-navbar " role="banner" style="margin-left:15%" >
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a asp-action="Index" asp-controller="Home" class="text-white mb-0">Kahve Dünyası</a></h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li class="active"><a asp-action="Index" asp-controller="Home"><span>Anasayfa</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Home"><span>Kahvelerimiz</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Home"><span>Hakkımızda</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Profile"><span>Profil</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main role="main" style="padding-top:10%;border:medium;border-radius:10px" >
+
+
+
+        <div class="album py-5 bg-light" style="border-radius:0px;">
+            <div class="container" >
+                <div class="row" >
+                    
+                    <table class="table">
+                    <thead>
+                    <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Coffee Name</th>
+                    <th scope="col">Coffee Brand</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                    <th scope="row">@item.Id</th>
+                    <td>@item.Name</td>
+                    <td>@item.Brand</td>
+
+                    </tr>
+                    }
+                    </tbody>
+                    </table> 
+                    <form asp-action="AdminPanel" asp-controller="Profile" method="post">
+                        <div class="row mx-sm-3 mb-2">
+                            <div class="col-8">
+                                <input type="text" name="Id" class="form-control form-control-lg col-8" placeholder="Silmek istediğiniz kahvenin Id'sini giriniz." />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-primary col-4">Sil</button>
+                            </div>    
+                        </div>
+                        
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="album py-5 bg-light" style="border-radius:0px;">
+            <div class="container" >
+                <div class="row" >
+                    <form asp-action="AdminCoffeeAdd" asp-controller="Profile" method="post">
+                    
+                    <table class="table">
+                    <thead>
+                    <tr>
+                    <th scope="col">Kahve İsmi</th>
+                    <th scope="col">Kahve Markası</th>
+                    <th scope="col">Tadım Notları</th>
+                    <th scope="col">Kahve Fotoğrafı</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                    <th scope="row">
+                        <input type="text" name="Name" class="form-control form-control-lg" />
+                    </th>
+                    <td>
+                        <input type="text" name="Brand" class="form-control form-control-lg" />
+                    </td>
+                    <td>
+                        <input type="text" name="Taste" class="form-control form-control-lg" />
+                    </td>
+                    <td>
+                        <input type="text" name="Image" class="form-control form-control-lg" />
+                    </td>
+
+                    </tr>
+                    
+                    </tbody>
+                    </table> 
+                        <div class="row mx-sm-3 mb-2">
+                            <div class="col-4">
+                                <button class="btn btn-primary col-4">Kaydet</button>
+                            </div>    
+                        </div>
+                        
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+    <footer class="text-muted">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Back to top</a>
+            </p>
+            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+</body>
+</html>
+
+
+
+
