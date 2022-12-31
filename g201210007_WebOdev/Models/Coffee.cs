@@ -9,6 +9,6 @@ namespace g201210007_WebOdev.Models
         public string Brand { get; set; }
         public string Taste { get; set; }
         public string Image { get; set; }
-
+        public List<string> Comments { get; set; }
     }
 }

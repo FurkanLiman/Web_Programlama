@@ -1,7 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.Taghelpers
 
-@model g201210007_WebOdev.Models.Account
-
+@*@model g201210007_WebOdev.Models.Account *@
+@model IEnumerable<g201210007_WebOdev.Models.Coffee>
 <!doctype html>
 <html lang="en" >
 <head>
@@ -62,36 +62,42 @@
 
         
 
-        <div class="album py-5 bg-light">
-            <div class="container">
+        <div class="album py-5 bg-light" style="border-radius:0px">
+            <div class="container" >
+                <div class="row" style="text-align:center; align-content:center;padding:10px 15px 10px 15px;">
+                    <h5 class="text-decoration-underline" style="font-family:Corbel;font-size:xxx-large;" >Kahve Çeşitleri</h5>
+                </div>
+                <div class="row" >
+                @{
+                        foreach (var coffee in TempData["coffeeList"] as List<Coffee>)
+                    {
 
-                <div class="row">
-                    @{
-                         foreach (var coffee in TempData["coffeeList"] as List<Coffee>)
-            {
-
-                    
-                    <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                                    <img class="card-img-top img-fluid" src="@coffee.Image" alt="Card image cap">
-                            <div class="card-body">
-                                <div style="font-size:x-large;color:#3A281C">
-                                <p class="card-text" style="text-align:center;font-family:Corbel;">@coffee.Name</p>
-                                </div>
-                                        <div>
-                                            <p class="card-text">@coffee.Brand</p>
-                                        </div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Detaylar</button>
+                                @*<var Name="sss" data="@coffee.Name"></var>*@
+                        <div class="col-md-4" style="text-align:center; align-content:center;padding:10px 15px 10px 15px;">
+                            <form class="row" asp-action="Index" asp-controller="Coffee" method="post">
+                            <div class="card mb-4 box-shadow">
+                                <img class="card-img-top img-fluid" src="@coffee.Image" alt="Card image cap">
+                                        <div class="card-body align-content-center" >
+                                    <div style="font-size:x-large;color:#3A281C">
+                                                <p class="card-text" name="isim" style="font-family:Corbel;color:black;font-size:xx-large">@coffee.Name</p>
                                     </div>
+                                    <div>
+                                                <p class="card-text" style="">@coffee.Brand</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center" >
+                                        <div class="btn-group" style="margin-left:40%">
+                                                <button name="id" value="@coffee.Id" class="btn btn-sm btn-outline-secondary" >Detaylar</button>
+                                        </div>
+                                    </div>
+                                
                                 </div>
                             </div>
+                            </form>
                         </div>
-                    </div>
-
                     }
-        }
+                }
+
+                                
                    
                 </div>
             </div>
