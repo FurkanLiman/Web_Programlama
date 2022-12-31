@@ -90,10 +90,19 @@
                         </div>
                         
                         <div class="form-outline mb-4 border" style="border:medium;border-block:solid;border-color:darkgrey;border-radius:5px;padding:5%">
-                            @foreach (var comments in Model.Comments)
-                            {
-                                        <p class="fw-normal mb-3 pb-3 border" style="color:#1F2E3B;letter-spacing: 1px;margin:15px 10px 15px 10px;border:thin;border-block:groove;border-color:darkgray;border-radius:5px;text-align:left center;padding:10px 10px 10px 10px">@comments</p>
-                            }
+                                    @{
+                                        if (Model.Comments != null)
+                                        {
+                                            foreach (var comments in Model.Comments)
+                                            {
+                                                <p class="fw-normal mb-3 pb-3 border" style="color:#1F2E3B;letter-spacing: 1px;margin:15px 10px 15px 10px;border:thin;border-block:groove;border-color:darkgray;border-radius:5px;text-align:left center;padding:10px 10px 10px 10px">@comments</p>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <p class="fw-normal mb-3 pb-3 border" style="color:#1F2E3B;letter-spacing: 1px;margin:15px 10px 15px 10px;border:thin;border-block:groove;border-color:darkgray;border-radius:5px;text-align:left center;padding:10px 10px 10px 10px">Yorum yok ilk yorum yapan siz olun...</p>
+                                        }
+                                    }
                         </div>
                     </div>
                     </form>

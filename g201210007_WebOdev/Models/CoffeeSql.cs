@@ -4,6 +4,7 @@ using NuGet.Packaging;
 using NuGet.Protocol;
 using System.Collections;
 using System.Linq;
+using static System.Net.WebRequestMethods;
 
 namespace g201210007_WebOdev.Models
 {
@@ -50,9 +51,13 @@ namespace g201210007_WebOdev.Models
         }
         public void AddCoffee(string name, string brand, string taste, string image)
         {
+            if(image == null)
+            {
+                image = "https://images-na.ssl-images-amazon.com/images/I/71nuFLPr7JL._AC_UL600_SR600,600_.jpg";
+            }
             using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
             using (var command = new NpgsqlDataAdapter())
-            using (var insertCommand = new NpgsqlCommand("insert into \"Coffee\"(\"Coffee_Name\",\"Coffe_Brand\",\"Coffee_Taste\",\"Coffee_Image\") values ('"+name+"', '"+brand+"','"+taste+"','"+image+"')"))
+            using (var insertCommand = new NpgsqlCommand("insert into \"Coffee\"(\"Coffee_Name\",\"Coffe_Brand\",\"Coffee_Taste\",\"Coffee_Image\",\"Coffee_Comment\") values ('"+name+"', '"+brand+"','"+taste+"','"+image+"', '{\"\"}')"))
             {
                 insertCommand.Connection = connection;
                 command.InsertCommand = insertCommand;
@@ -147,12 +152,16 @@ namespace g201210007_WebOdev.Models
                     coffee.Comments = new();
                     coffee.Comments.AddRange((IEnumerable<string>)(coffeesy[5] as Array));
                     string toplam = "";
-                    foreach (var item in coffee.Comments)
+                    if (coffee.Comments != null)
                     {
-                        toplam += item+",";
+                        foreach (var item in coffee.Comments)
+                        {
+                            toplam +="\""+item + "\",";
+                        }
                     }
+                    toplam += "\"" + comment+ "\"";
                     coffee.Comments.Add(comment);
-                    toplam += comment;
+                    
                     using (var connection1 = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
                     using (var command1 = new NpgsqlDataAdapter())
                     using (var insertCommand1 = new NpgsqlCommand("UPDATE \"Coffee\"\r set \"Coffee_Comment\" = '{"+toplam+"}' \r WHERE \"id\" ="+id.ToString()))
