@@ -21,8 +21,15 @@
 
     <!-- Style -->
     <link rel="stylesheet" href="~/css/style.css">
+    
 
-    <title>Website Menu #3</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+
+    <script src="script.js"></script>
 </head>
 <body class="hero img-fluid" style="background-image: url('https://images.unsplash.com/photo-1542181961-9590d0c79dab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');">
 
@@ -42,15 +49,13 @@
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                            <li class="active"><a asp-action="Index" asp-controller="Home"><span>Anasayfa</span></a></li>
-                            <li><a asp-action="Products" asp-controller="Coffee"><span>Kahvelerimiz</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Aboutus"><span>Hakkımızda</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Profile"><span><img style="max-height:30px" src="/profile.png" />Profil</span></a></li>
+                            <li class="active"><a asp-action="Index" asp-controller="Home" accesskey="0"><span>Anasayfa</span></a></li>
+                            <li><a asp-action="Products" asp-controller="Coffee" accesskey="1"><span>Kahvelerimiz</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Aboutus" accesskey="2"><span>Hakkımızda</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Profile" accesskey="3"><span><img style="max-height:30px" src="/profile.png" />Profil</span></a></li>
                         </ul>
                     </nav>
                 </div>
-
-
                 <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
 
             </div>
@@ -59,8 +64,11 @@
 
     </header>
 
+   
 
     <main role="main" style="padding-top:10%">
+   
+
     @*<section class="vh-100" style="background-color:#DBCFBB;min-width:fit-content;max-height:fit-content">*@
   <div class="container py-5 h-200" >
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -112,16 +120,9 @@
     </div>
   </div>
 
+ 
         </main>
-    
-
-
-@*</section>*@
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script>
+  
 </body>
 </html>
 @*

@@ -29,6 +29,17 @@ namespace g201210007_WebOdev.Controllers
             List<Coffee> coffees = getCoffee.CoffeeRead();
             return View(coffees);
         }
+        [HttpPost]
+        public IActionResult Products(string bt)
+        {
+
+            CoffeeSql getCoffee = new CoffeeSql();
+            List<Coffee> coffees = getCoffee.CoffeeRead();
+            LinqCoffees askComm = new LinqCoffees();
+            coffees = askComm.askComm(coffees);
+            return View(coffees);
+        }
+      
 
         [HttpPost]
         public ActionResult CoffeeDetails(string comment,int id)
@@ -47,7 +58,15 @@ namespace g201210007_WebOdev.Controllers
         {
             return View(coffee);
         }
-
+        [HttpPost]
+        public IActionResult searchInP(string ss)
+        {
+            CoffeeSql getCoffee = new CoffeeSql();
+            List<Coffee> coffees = getCoffee.CoffeeRead();
+            LinqCoffees askS = new LinqCoffees();
+            coffees = askS.askS(coffees, ss);
+            return View(coffees);
+        }
         // GET: CoffeeController/Create
         public ActionResult Create()
         {

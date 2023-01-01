@@ -13,6 +13,8 @@ namespace g201210007_WebOdev.Models
 
         public List<Coffee> CoffeeRead()
         {
+
+            
             using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
             using (var command = new NpgsqlDataAdapter())
             using (var insertCommand = new NpgsqlCommand("select * from \"Coffee\""))

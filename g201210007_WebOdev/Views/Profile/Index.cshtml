@@ -83,6 +83,8 @@
                     </thead>
                     @foreach (var item in Model as List<Coffee>)
                     { 
+
+                            
                             if(item.Comments !=null && Model!=null){
                                 int comId = 0;
                                 foreach (var com in item.Comments)

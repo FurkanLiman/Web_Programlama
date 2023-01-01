@@ -29,6 +29,7 @@ namespace g201210007_WebOdev.Controllers
                 return View(coffees);
             }
         }
+        
         public IActionResult araAction()
         {
            
@@ -48,8 +49,9 @@ namespace g201210007_WebOdev.Controllers
             return araAction();
 
         }
+
         private IActionResult AdminPanel(List<Coffee> coffees)
-        {
+        {//panel Private boylece yalnızca admin ulaşıyor
             
             return View("AdminPanel",coffees);
 
