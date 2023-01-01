@@ -24,7 +24,9 @@ namespace g201210007_WebOdev.Controllers
             }
             else
             {
-                return View();
+                CoffeeSql getCoffee = new CoffeeSql();
+                List<Coffee> coffees = getCoffee.CoffeeRead();
+                return View(coffees);
             }
         }
         public IActionResult araAction()
@@ -61,5 +63,14 @@ namespace g201210007_WebOdev.Controllers
 
             return RedirectToAction("araAction");
         }
+        [HttpPost]
+        public IActionResult deleteComment(string id, string comId) 
+        {
+
+            CoffeeSql delComment= new CoffeeSql();
+            delComment.deleteCommentSql(id, comId);
+            return RedirectToAction("Index", "Profile"); 
+        }
+
     }
 }

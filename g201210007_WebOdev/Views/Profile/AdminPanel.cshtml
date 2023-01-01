@@ -25,10 +25,12 @@
 </head>
 
 <body class="hero img-fluid" style="background-image: url('https://images.unsplash.com/photo-1542181961-9590d0c79dab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');">
-    
-    
 
-   <header class="site-navbar " role="banner" style="margin-left:15%" >
+
+
+
+
+    <header class="site-navbar " role="banner" style="margin-left:15%">
 
         <div class="container">
             <div class="row align-items-center">
@@ -36,14 +38,14 @@
                 <div class="col-11 col-xl-2">
                     <h1 class="mb-0 site-logo"><a asp-action="Index" asp-controller="Home" class="text-white mb-0">Kahve Dünyası</a></h1>
                 </div>
-                <div class="col-12 col-md-10 d-none d-xl-block">
+                <div class="col-12 col-xs-1 col-md-10 d-xl-block">
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                             <li class="active"><a asp-action="Index" asp-controller="Home"><span>Anasayfa</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Kahvelerimiz</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Hakkımızda</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Profile"><span>Profil</span></a></li>
+                            <li><a asp-action="Products" asp-controller="Coffee"><span>Kahvelerimiz</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Aboutus"><span>Hakkımızda</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Profile"><span><img style="max-height:30px" src="/profile.png" /><b> @User.Claims.ToList()[1].Value.ToString()</b></span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -61,9 +63,17 @@
     <main role="main" style="padding-top:10%;border:medium;border-radius:10px" >
 
 
-
+        @*Kahve Sil*@
         <div class="album py-5 bg-light" style="border-radius:0px;">
             <div class="container" >
+                <div>
+                    <h4>
+                        <b>Merhabalar, </b>@User.Claims.ToList()[1].Value.ToString()
+                    </h4>
+
+                    <h3>@User.Claims.ToList()[0].Value.ToString()</h3>
+                    <h5>Bu alandan Kahve Silebilirsiniz.</h5>
+                </div>
                 <div class="row" >
                     
                     <table class="table">
@@ -104,9 +114,12 @@
         </div>
 
 
-
+        @*kahve ekleme*@
         <div class="album py-5 bg-light" style="border-radius:0px;">
             <div class="container" >
+                <div>
+                    <h5>Bu alandan kahve ekleyebilirsiniz.</h5>
+                </div>
                 <div class="row" >
                     <form asp-action="AdminCoffeeAdd" asp-controller="Profile" method="post">
                     
@@ -152,17 +165,75 @@
         </div>
 
 
+       
+        @*yorum silme*@
+        <div class="album py-5 bg-light" style="border-radius:0px;">
+            <div class="container">
+                <div>
+                    <h5>Bu alandan herhangi bir kullanıcıdan gelmiş herhangi bir yorumu silebilirsiniz.</h5>
+                </div>
+                <div class="row">
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"> id</th>
+                                <th scope="col">Coffee Name</th>
+                                <th scope="col">Coffee Comment ID</th>
+                                <th scope="col">Coffee Comment</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model as List<Coffee>)
+                        {
+                            if (item.Comments != null && Model != null)
+                            {
+                                int comId = 0;
+                                foreach (var com in item.Comments)
+                                {
+                                    
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">@item.Id</th>
+                                                <td>@item.Name</td>
+                                                <td>@comId</td>
+                                                <td>@com</td>
+                                            </tr>
+                                        </tbody>
+                                    
+                                    comId += 1;
+                                }
+                            }
+
+                        }
+                    </table>
+                    <form asp-action="deleteComment" asp-controller="Profile" method="post">
+                        <div class="row mx-sm-3 mb-2">
+                            <div class="col-4">
+                                <input type="text" name="Id" class="form-control form-control-lg col-8" placeholder="Silmek istediğiniz yorumun Kahve Id'siini giriniz." />
+                            </div>
+                            <div class="col-4">
+                                <input type="text" name="comId" class="form-control form-control-lg col-8" placeholder="Silmek istediğiniz yorumun Id'siini giriniz." />
+                            </div>
+                            <div class="col-4">
+                                <button class="btn btn-primary col-4">Sil</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        
     </main>
 
 
     <footer class="text-muted">
         <div class="container">
             <p class="float-right">
-                <a href="#">Back to top</a>
+                <a href="#">Sayfa başına dön</a>
             </p>
-            <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-        </div>
+            </div>
     </footer>
 
     <!-- Bootstrap core JavaScript

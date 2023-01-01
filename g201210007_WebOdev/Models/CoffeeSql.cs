@@ -35,6 +35,8 @@ namespace g201210007_WebOdev.Models
                         coffee.Taste =  coffees.GetString(3);
                         
                         coffee.Image = coffees.GetString(4);
+                        coffee.Comments = new();
+                        coffee.Comments.AddRange((IEnumerable<string>)(coffees[5] as Array));
                         coffeeList.Add(coffee);
 
                     }
@@ -45,6 +47,67 @@ namespace g201210007_WebOdev.Models
                     
                 }
                 return coffeeList;
+
+            }
+
+        }
+        public void deleteCommentSql(string id, string comId)
+        {
+            using (var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
+            using (var command = new NpgsqlDataAdapter())
+            using (var insertCommand = new NpgsqlCommand("select * from \"Coffee\" where \"id\" =" + id))
+            {
+                insertCommand.Connection = connection;
+                command.InsertCommand = insertCommand;
+
+                List<string> coms = new List<string>();
+                connection.Open();
+                NpgsqlDataReader coffeesy = insertCommand.ExecuteReader();
+                if (coffeesy.Read() && coffeesy.GetString(1) != null)
+                {
+
+                    
+
+                    
+                    coms.AddRange((IEnumerable<string>)(coffeesy[5] as Array));
+                    string toplam = "";
+
+                    if (coms != null)
+                    {
+
+                        int sayac = 0;
+                        foreach (var item in coms)
+                        {
+                            
+                            if (sayac != Int32.Parse(comId) && sayac + 1 != coms.Count())
+                            {
+                                toplam += "\"" + item + "\",";                            
+                            }else if(sayac+1 == coms.Count() && sayac != Int32.Parse(comId)) {
+                                toplam += "\"" + item + "\"";
+                            }
+                            sayac++;
+                        }
+                    }
+                    
+
+                    using (var connection1 = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=postgres;"))
+                    using (var command1 = new NpgsqlDataAdapter())
+                    using (var insertCommand1 = new NpgsqlCommand("UPDATE \"Coffee\"\r set \"Coffee_Comment\" = '{" + toplam + "}' \r WHERE \"id\" =" + id.ToString()))
+                    {
+                        insertCommand1.Connection = connection1;
+                        command1.InsertCommand = insertCommand1;
+
+
+                        connection1.Open();
+                        NpgsqlDataReader state = insertCommand1.ExecuteReader();
+
+                    }
+                   
+                }
+                else
+                {
+                }
+
 
             }
 

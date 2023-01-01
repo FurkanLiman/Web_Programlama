@@ -21,9 +21,14 @@ namespace g201210007_WebOdev.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index","Home");
         }
-
+        public IActionResult Products()
+        {
+            CoffeeSql getCoffee = new CoffeeSql();
+            List<Coffee> coffees = getCoffee.CoffeeRead();
+            return View(coffees);
+        }
 
         [HttpPost]
         public ActionResult CoffeeDetails(string comment,int id)

@@ -28,7 +28,9 @@
 
 
 
-    <header class="site-navbar " role="banner" style="margin-left:15%" >
+
+
+    <header class="site-navbar " role="banner" style="margin-left:15%">
 
         <div class="container">
             <div class="row align-items-center">
@@ -36,14 +38,14 @@
                 <div class="col-11 col-xl-2">
                     <h1 class="mb-0 site-logo"><a asp-action="Index" asp-controller="Home" class="text-white mb-0">Kahve Dünyası</a></h1>
                 </div>
-                <div class="col-12 col-md-10 d-none d-xl-block">
+                <div class="col-12 col-xs-1 col-md-10 d-xl-block">
                     <nav class="site-navigation position-relative text-right" role="navigation">
 
                         <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
                             <li class="active"><a asp-action="Index" asp-controller="Home"><span>Anasayfa</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Kahvelerimiz</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Hakkımızda</span></a></li>
-                            <li><a asp-action="Index" asp-controller="Home"><span>Bize Ulaşın</span></a></li>
+                            <li><a asp-action="Products" asp-controller="Coffee"><span>Kahvelerimiz</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Aboutus"><span>Hakkımızda</span></a></li>
+                            <li><a asp-action="Index" asp-controller="Profile"><span><img style="max-height:30px" src="/profile.png" />Profil</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -111,15 +113,7 @@
   </div>
 
         </main>
-      <footer class="text-muted">
-        <div class="container">    
-            <p class="float-right">    
-                <a href="#">Back to top    </a>
-                </p>
-                <p>Al    bum examp    le is &co    py;     Bootstrap, but please download and customize it for yourself!</p>
-            <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
-        </div>
-    </footer>
+    
 
 
 @*</section>*@

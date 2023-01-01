@@ -19,6 +19,9 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\src\background.jpg" />
+    <None Include="wwwroot\fonts\.DS_Store" />
+    <None Include="wwwroot\fonts\icomoon\demo-files\demo.js" />
+    <None Include="wwwroot\fonts\icomoon\fonts\icomoon.svg" />
   </ItemGroup>
 
   <ItemGroup>
