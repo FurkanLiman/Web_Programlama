@@ -44,6 +44,7 @@
                             <li><a asp-action="Products" asp-controller="Coffee"><span>Kahvelerimiz</span></a></li>
                             <li><a asp-action="Index" asp-controller="Aboutus"><span>Hakkımızda</span></a></li>
                             <li><a asp-action="Index" asp-controller="Profile"><span><img style="max-height:30px" src="/profile.png" /><b> @User.Claims.ToList()[1].Value.ToString()</b></span></a></li>
+                            <li><a asp-action="Logout" asp-controller="Home"><span><img style="max-height:30px" src="/loguot.png" /><b>Çıkış Yap</b></span></a></li>
                         </ul>
                     </nav>
                 </div>
